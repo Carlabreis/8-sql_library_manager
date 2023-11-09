@@ -4,10 +4,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Use the require method to import the instance of sequelize that was instantiated for you in the models/index.js file when you used the sequelize CLI
+const { sequelize } = require('./models');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+
+(async () => {
+  sequelize.sync({ force: true });
+
+  try {
+    await sequelize.authenticate();
+    console.log("Connection to the database successful!");
+  } catch (error) {
+    console.error("Error connecting to the database: ", error);
+  }
+})();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
