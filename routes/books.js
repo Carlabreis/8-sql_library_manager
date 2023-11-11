@@ -45,12 +45,14 @@ router.get(
 );
 
 // Updates book info in the database
-// router.post(
-//   "/:id",
-//   asyncHandler(async (req, res, next) => {
-    
-//   })
-// );
+router.post(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    const book = await Book.findByPk(req.params.id);
+    await book.update(req.body);
+    res.redirect('/books');
+  })
+);
 
 // Deletes a book.
 // router.post(
