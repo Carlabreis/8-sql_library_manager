@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Please provide a value for "title"',
+          }
+        }
         //check if this works (isEmpty from validator library)
         // isEmpty: {
         //   msg: "This field can't be empty."
@@ -27,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       author: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Please provide a value for "title"',
+          }
+        }
         //check if this works
         // isEmpty: {
         //   msg: "This field can't be empty."
