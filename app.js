@@ -13,16 +13,16 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 
-(async () => {
+async () => {
   sequelize.sync({ force: true });
-
+  
   try {
     await sequelize.authenticate();
     console.log("Connection to the database successful!");
   } catch (error) {
     console.error("Error connecting to the database: ", error);
   }
-})();
+};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
