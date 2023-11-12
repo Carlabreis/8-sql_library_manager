@@ -1,21 +1,50 @@
 extends layout
 
 block content
-  h1= title
+  h1.text-center= title
+
+  //- Create new book link
   p
     a.button(href='/books/new') Create New Book
-  table
-    thead
-      tr
-        th Title
-        th Author
-        th Genre
-        th Year
-    tbody
-      each book in books
+
+  //- Search form
+  form(action='#', method='get')
+    input.search-input(type='search', name='search', placeholder='', value=search)
+    input.search-submit(type='submit', value="search")
+
+  //- Friendly message displays if no results were found
+  if books.length == 0
+    h2 Oooops!
+    p No matches found. Try again.
+    br
+    p 
+      a(class="button", href="/") Home
+  //- Book table displays
+  else 
+    table.center
+      thead
         tr
-          td
-            a(href=`/books/${book.id}`)= book.title 
-          td= book.author
-          td= book.genre
-          td= book.year
+          th Title
+          th Author
+          th Genre
+          th Year
+      tbody
+        each book in books
+          tr
+            td
+              a(href=`/books/${book.id}`)= book.title 
+            td= book.author
+            td= book.genre
+            td= book.year
+    
+    //- pagination links
+    .center.text-center
+      form(method="get" action=`/books`)
+        if search
+          input(type="hidden" name="search" value=search)
+        each _, i in Array(numberOfPages)
+          a
+            if i+1 == pageNumber
+              button.active(type='submit' name='page' value=`${i+1}`)= i+1
+            else
+              button(type='submit' name='page' value=`${i+1}`)= i+1

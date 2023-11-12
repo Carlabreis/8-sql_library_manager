@@ -1,7 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-// https://github.com/validatorjs/validator.js
-// import validator from 'validator';
 
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
@@ -24,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Please provide a value for "title"',
           },
           notEmpty: {
-            msg: 'Author is required',
-          }
-        }
+            msg: '"Title" is required',
+          },
+        },
       },
       author: {
         type: DataTypes.STRING,
@@ -36,12 +34,14 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Please provide a value for "title"',
           },
           notEmpty: {
-            msg: 'Author is required',
-          }
-        }
+            msg: '"Author" is required',
+          },
+        },
       },
       genre: DataTypes.STRING,
-      year: DataTypes.INTEGER,
+      year: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,

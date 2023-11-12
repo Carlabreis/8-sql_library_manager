@@ -1,8 +1,36 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 }
 
 a {
   color: #00B7FF;
+}
+
+/* Added styes */
+.content {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 100px;
+  background-color: rgb(237, 243, 248);
+  padding: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.center {
+  padding: 10px;
+  margin: auto;
+}
+
+.active {
+  background-color: #00B7FF;
+  border-color: #00B7FF;
 }

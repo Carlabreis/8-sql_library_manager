@@ -2,4 +2,7 @@ extends layout
 
 block content
   h1 Server Error
-  p= message
+  p= err.message
+  br
+  p 
+      a(class="button", href="/") Home

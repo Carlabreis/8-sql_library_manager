@@ -1,20 +1,34 @@
 extends layout 
 
 block content 
-    h1= tittle
+    h1.center= title
+
+    //- Friendly message if required fields are empty
+    if (errors)
+      h2.error Oooops!
+      ul.error
+        each error in errors
+          li
+            =error.message
+
+    //- Form to enter new book info
     form(action='/books/new', method="post")
       p
         label(for='title') Title
-        input#title(name='title' type='text')
+        br
+        input#title(name='title' type='text' value=book ? book.title: "")
       p
         label(for='author') Author
-        input#author(name='author' type='text')
+        br
+        input#author(name='author' type='text' value=book ? book.author : "")
       p
         label(for='genre') Genre
-        input#genre(name='genre' type='text')
+        br
+        input#genre(name='genre' type='text' value=book ? book.genre : "")
       p
         label(for='year') Year
-        input#year(name='year' type='text')
+        br
+        input#year(name='year' type='text' value=book ? book.year : NULL)
       p
         input(type='submit' value='Create New Book')
       p

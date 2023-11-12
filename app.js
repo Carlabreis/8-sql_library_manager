@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// Use the require method to import the instance of sequelize that was instantiated for you in the models/index.js file when you used the sequelize CLI
+// Use the require method to import the instance of sequelize that was instantiated in the models/index.js file when using the sequelize CLI
 const { sequelize } = require('./models');
 
 var indexRouter = require('./routes/index');
@@ -32,7 +32,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// static middleware
+// static middleware (automatically generated)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -43,7 +43,6 @@ app.use('/books', booksRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   console.log("Handling 404 error");
-  // next(createError(404));
 
   // Create new error to handle non-existent routes
   const err = new Error("err");
