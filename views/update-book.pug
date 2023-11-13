@@ -3,6 +3,14 @@ extends layout
 block content 
   h1 Update Book
 
+  //- Friendly message if required fields are empty
+  if (errors)
+      h2.error Oooops!
+      ul.error
+        each error in errors
+          li
+            =error.message
+
   //- Form to update book info
   form(action=`/books/${book.id}` method="post")
     p

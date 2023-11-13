@@ -107,8 +107,22 @@ router.post(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const book = await Book.findByPk(req.params.id);
-    await book.update(req.body);
-    res.redirect("/books");
+    try {
+      await book.update(req.body);
+      res.redirect("/books");
+    } catch (error) {
+      if (error.name === "SequelizeValidationError") {
+        // checking the error
+        res.render("update-book", {
+          book,
+          errors: error.errors,
+          title: "Update Book",
+        });
+      } else {
+        throw error; // error caught in the asyncHandler's catch block
+      }
+    }
+
   })
 );
 
