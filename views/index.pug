@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1.text-center= title
+  h1= title
 
   //- Create new book link
   p
@@ -21,7 +21,7 @@ block content
       a(class="button", href="/") Home
   //- Book table displays
   else 
-    table.center
+    table
       thead
         tr
           th Title
@@ -38,7 +38,7 @@ block content
             td= book.year
     
     //- pagination links
-    .center.text-center
+    div
       form(method="get" action=`/books`)
         if search
           input(type="hidden" name="search" value=search)
